@@ -1,0 +1,6 @@
+@FStore.API_HostAddress = http://localhost:5065
+
+GET {{FStore.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
