@@ -2,10 +2,8 @@
 {
     public class Product : Entity<Guid>
     {
-        [StringLength(100)]
         public string Title { get; set; } = string.Empty;
         public string Slug { get; set; } = string.Empty;
-        [StringLength(250)]
         public string Description { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
         public bool IsActive { get; set; } = true;
