@@ -18,7 +18,7 @@
                 .HasConversion<int>()
                 .IsRequired();
 
-            builder.Property(o => o.FullName)
+            builder.Property(o => o.Name)
                 .HasMaxLength(50)
                 .IsRequired();
 
@@ -26,11 +26,11 @@
                 .HasMaxLength(30)
                 .IsRequired();
 
-            builder.Property(o => o.Phone)
+            builder.Property(o => o.PhoneNumber)
                 .HasMaxLength(14)
                 .IsRequired();
 
-            builder.Property(o => o.Address)
+            builder.Property(o => o.DeliveryAddress)
                 .HasMaxLength(250)
                 .IsRequired();
 
