@@ -1,5 +1,7 @@
 ﻿using FStore.Infrastructure.Mapping;
+using FStore.Infrastructure.Persistence.Interceptors;
 using FStore.Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,14 +14,17 @@ namespace FStore.Infrastructure
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             // Add services to the container.
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>(); // Register Audit Interceptor
+
+            services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
+                options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                 options.UseSqlServer(connectionString);
-            });
+            }); // Register EF ORM DbContext
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>(); // Register Repository Unit of Work
 
-            MapsterConfig.Configure();
+            MapsterConfig.Configure(); // Configuring Mapster
 
             return services;
         }
