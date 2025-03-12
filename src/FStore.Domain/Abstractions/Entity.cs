@@ -1,6 +1,6 @@
 ﻿namespace FStore.Domain.Abstractions
 {
-    public abstract class Entity<T> 
+    public abstract class Entity<T>  : IEntity
     {
         public T Id { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
