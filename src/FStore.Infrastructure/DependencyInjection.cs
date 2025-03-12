@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FStore.Infrastructure.Mapping;
+using FStore.Infrastructure.Persistence.Repositories;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FStore.Infrastructure
@@ -14,6 +16,10 @@ namespace FStore.Infrastructure
             {
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            MapsterConfig.Configure();
 
             return services;
         }
