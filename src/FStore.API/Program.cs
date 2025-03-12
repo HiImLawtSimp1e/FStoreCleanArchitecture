@@ -1,4 +1,5 @@
 using FStore.API;
+using FStore.Application;
 using FStore.Infrastructure;
 using FStore.Infrastructure.Persistence.Extensions;
 
@@ -9,6 +10,7 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 
 // Add services to the container.
 builder.Services
+    .AddApplicationServices(builder.Configuration)
     .AddInfrastructureServices(builder.Configuration)
     .AddApiServices(builder.Configuration);
 
