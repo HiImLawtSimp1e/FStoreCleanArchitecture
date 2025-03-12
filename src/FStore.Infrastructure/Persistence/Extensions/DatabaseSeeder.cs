@@ -134,7 +134,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "John Admin",
                        Email = "johnadmin@example.com",
                        PhoneNumber = "1234567891",
-                       DeliveryAddress = "125 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
+                       AddressLine = "125 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
                        IsMain = true
                    },
                    new Address
@@ -144,7 +144,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Đăng Thị Hồng Nhung",
                        Email = "dangnhung72@gmail.com",
                        PhoneNumber = "0366702305",
-                       DeliveryAddress = "25 Phình Hồ, Văn Chấn, Yên Bái",
+                       AddressLine = "25 Phình Hồ, Văn Chấn, Yên Bái",
                        IsMain = false
                    },
                    new Address
@@ -154,7 +154,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Nguyễn Quang Hưng",
                        Email = "q170302@email.com",
                        PhoneNumber = "0344917302",
-                       DeliveryAddress = "22 Ngã Ba Kim, Mù Cang Chải, Yên Bái",
+                       AddressLine = "22 Ngã Ba Kim, Mù Cang Chải, Yên Bái",
                        IsMain = true
                    },
                    new Address
@@ -164,7 +164,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Nguyễn Văn An",
                        Email = "nguyenvana@example.com",
                        PhoneNumber = "0912345678",
-                       DeliveryAddress = "15 Lê Văn Lương, Thanh Xuân, Hà Nội",
+                       AddressLine = "15 Lê Văn Lương, Thanh Xuân, Hà Nội",
                        IsMain = true
                    },
                    new Address
@@ -174,7 +174,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Lê Thị Bích",
                        Email = "lethib@example.com",
                        PhoneNumber = "0923456789",
-                       DeliveryAddress = "20 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+                       AddressLine = "20 Nguyễn Trãi, Thanh Xuân, Hà Nội",
                        IsMain = false
                    },
                    new Address
@@ -184,7 +184,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Phạm Văn Công",
                        Email = "phamvanc@example.com",
                        PhoneNumber = "0934567890",
-                       DeliveryAddress = "88 Đường Giải Phóng, Hoàng Mai, Hà Nội",
+                       AddressLine = "88 Đường Giải Phóng, Hoàng Mai, Hà Nội",
                        IsMain = false
                    },
                    new Address
@@ -194,7 +194,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "John Employee",
                        Email = "johnemployee@example.com",
                        PhoneNumber = "1234567892",
-                       DeliveryAddress = "121 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
+                       AddressLine = "121 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
                        IsMain = true
                    },
                    new Address
@@ -204,7 +204,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Nguyễn Văn Minh",
                        Email = "minhnguyen@example.com",
                        PhoneNumber = "0987654321",
-                       DeliveryAddress = "456 Đường Nguyễn Trãi, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
+                       AddressLine = "456 Đường Nguyễn Trãi, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
                        IsMain = true
                    },
                    new Address
@@ -214,7 +214,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Lê Thị Mai",
                        Email = "lethimai@example.com",
                        PhoneNumber = "0912345679",
-                       DeliveryAddress = "789 Đường Lê Văn Sỹ, Phường 13, Quận 3, TP. Hồ Chí Minh",
+                       AddressLine = "789 Đường Lê Văn Sỹ, Phường 13, Quận 3, TP. Hồ Chí Minh",
                        IsMain = true
                    },
                    new Address
@@ -224,7 +224,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Trần Thị Lan",
                        Email = "tranlan@example.com",
                        PhoneNumber = "0908765432",
-                       DeliveryAddress = "123 Đường Lê Lai, Phường Phú Hòa, TP. Thủ Dầu Một, Bình Dương",
+                       AddressLine = "123 Đường Lê Lai, Phường Phú Hòa, TP. Thủ Dầu Một, Bình Dương",
                        IsMain = true
                    },
                    new Address
@@ -234,7 +234,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Nguyễn Thị An",
                        Email = "nguyenan@example.com",
                        PhoneNumber = "0976543210",
-                       DeliveryAddress = "456 Đường Nguyễn Thái Học, Phường 10, TP. Cần Thơ",
+                       AddressLine = "456 Đường Nguyễn Thái Học, Phường 10, TP. Cần Thơ",
                        IsMain = true
                    },
                    new Address
@@ -244,7 +244,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Phan Thị Tuyết",
                        Email = "phantuyet@example.com",
                        PhoneNumber = "0901234567",
-                       DeliveryAddress = "789 Đường Võ Văn Tần, Phường 5, Quận 3, TP. Hồ Chí Minh",
+                       AddressLine = "789 Đường Võ Văn Tần, Phường 5, Quận 3, TP. Hồ Chí Minh",
                        IsMain = true
                    },
                    new Address
@@ -254,7 +254,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Vũ Văn Khải",
                        Email = "vuvankhai@example.com",
                        PhoneNumber = "0912345678",
-                       DeliveryAddress = "123 Đường Trường Chinh, Phường 14, Quận Tân Bình, TP. Hồ Chí Minh",
+                       AddressLine = "123 Đường Trường Chinh, Phường 14, Quận Tân Bình, TP. Hồ Chí Minh",
                        IsMain = true
                    },
                    new Address
@@ -264,7 +264,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Lê Hoàng Anh",
                        Email = "lehoanganh@example.com",
                        PhoneNumber = "0923456789",
-                       DeliveryAddress = "234 Đường Hà Huy Tập, Phường Đông Vệ, TP. Thanh Hóa",
+                       AddressLine = "234 Đường Hà Huy Tập, Phường Đông Vệ, TP. Thanh Hóa",
                        IsMain = true
                    },
                    new Address
@@ -274,7 +274,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Trần Thị Lệ",
                        Email = "tranle@example.com",
                        PhoneNumber = "0987654321",
-                       DeliveryAddress = "123 Đường Nguyễn Văn Linh, Phường Tân Hưng, Quận 7, TP. Hồ Chí Minh",
+                       AddressLine = "123 Đường Nguyễn Văn Linh, Phường Tân Hưng, Quận 7, TP. Hồ Chí Minh",
                        IsMain = true
                    },
                    new Address
@@ -284,7 +284,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Hoàng Thị Mai",
                        Email = "hoangmai@example.com",
                        PhoneNumber = "0976543210",
-                       DeliveryAddress = "456 Đường Phan Chu Trinh, Phường 5, TP. Đà Nẵng",
+                       AddressLine = "456 Đường Phan Chu Trinh, Phường 5, TP. Đà Nẵng",
                        IsMain = true
                    },
                    new Address
@@ -294,7 +294,7 @@ namespace FStore.Infrastructure.Persistence.Extensions
                        Name = "Lê Thị Hòa",
                        Email = "lehoa@example.com",
                        PhoneNumber = "0934567890",
-                       DeliveryAddress = "789 Đường Lý Thường Kiệt, Phường Bắc Lý, TP. Quảng Bình",
+                       AddressLine = "789 Đường Lý Thường Kiệt, Phường Bắc Lý, TP. Quảng Bình",
                        IsMain = true
                    }
             );

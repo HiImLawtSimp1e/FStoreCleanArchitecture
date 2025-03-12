@@ -14,7 +14,7 @@
             .HasMaxLength(14)
             .IsRequired();
 
-            builder.Property(a => a.DeliveryAddress)
+            builder.Property(a => a.AddressLine)
                 .HasMaxLength(250)
                 .IsRequired();
 
