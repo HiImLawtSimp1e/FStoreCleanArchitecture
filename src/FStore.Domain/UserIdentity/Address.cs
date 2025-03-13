@@ -1,4 +1,4 @@
-﻿namespace FStore.Domain.Account
+﻿namespace FStore.Domain.UserIdentity
 {
     public class Address : Entity<Guid>
     {

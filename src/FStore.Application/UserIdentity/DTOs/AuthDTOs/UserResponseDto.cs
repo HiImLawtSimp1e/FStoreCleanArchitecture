@@ -1,4 +1,4 @@
-﻿namespace FStore.Application.Account.DTOs.AuthDTOs
+﻿namespace FStore.Application.UserIdentity.DTOs.AuthDTOs
 {
     public class UserResponseDto
     {

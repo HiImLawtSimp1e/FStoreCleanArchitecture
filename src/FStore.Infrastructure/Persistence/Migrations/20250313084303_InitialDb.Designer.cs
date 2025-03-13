@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FStore.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250312145253_InitialDb")]
+    [Migration("20250313084303_InitialDb")]
     partial class InitialDb
     {
         /// <inheritdoc />
@@ -24,543 +24,6 @@ namespace FStore.Infrastructure.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("FStore.Domain.Account.Account", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Accounts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("3aec8f0b-3a6a-4b5d-8a3a-348ae529001a"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5559),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5576),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 1,
-                            Username = "admin@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("2b25a754-a50e-4468-942c-d65c0bc2c86f"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5589),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5590),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "customer@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5594),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5594),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "customer2@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("3141069d-f4f3-475c-8efc-99e1b4c3e627"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5597),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5597),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 2,
-                            Username = "employee@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("a3339dd7-94b9-4f12-9d18-2ee341b4f35c"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5599),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5600),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "nguyenvanminh@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("6060ab5a-ca8b-409c-87b2-363a69f06e66"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5601),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5602),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "lethimai@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("0e5c838e-f387-4183-a1c1-4c1e802ab180"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5604),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5604),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "tranlan@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("ae4c4f03-aa8a-4f37-a7cb-c5bc06e08d74"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5606),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5606),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "nguyenan@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("463d52ee-4c4e-40b0-a8f3-e59086878964"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5608),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5609),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "phantuyet@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("80cd99a5-f3e4-43f6-a725-f4e07fa7cd7d"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5610),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5611),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "vuvankhai@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("c36aab76-f6cc-46f6-a6c3-730d54b61a48"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5613),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5613),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "lehoanganh@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("4b45812f-2f47-41b9-b913-39bed1b02c1d"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5615),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5615),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "tranle@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("3a9477da-b75c-4ef6-9bf6-a93aa5ffaf6f"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5617),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5617),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "hoangmai@example.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("d15fcb08-fcb1-4a55-b012-b2be211ed2c1"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5619),
-                            CreatedBy = "",
-                            Deleted = false,
-                            IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5620),
-                            ModifiedBy = "",
-                            PasswordHash = new byte[] { 81, 111, 115, 159, 19, 6, 13, 9, 115, 241, 179, 48, 221, 235, 207, 25, 165, 0, 52, 173, 225, 195, 221, 106, 38, 76, 49, 159, 130, 170, 128, 131, 59, 185, 16, 245, 185, 175, 77, 146, 102, 82, 220, 212, 122, 233, 9, 78, 145, 0, 27, 207, 251, 177, 97, 134, 193, 49, 208, 22, 147, 140, 43, 145 },
-                            PasswordSalt = new byte[] { 93, 213, 107, 55, 10, 134, 44, 227, 24, 22, 26, 195, 244, 209, 17, 172, 23, 217, 10, 252, 78, 149, 157, 160, 131, 188, 67, 45, 217, 220, 8, 73, 31, 163, 196, 253, 241, 218, 163, 2, 162, 39, 176, 102, 124, 134, 9, 66, 20, 33, 57, 243, 194, 28, 21, 136, 67, 159, 236, 187, 238, 230, 116, 33, 214, 140, 173, 176, 32, 120, 156, 232, 195, 14, 104, 34, 116, 147, 146, 104, 27, 54, 126, 32, 140, 44, 45, 167, 33, 125, 184, 46, 40, 120, 246, 158, 99, 69, 187, 206, 147, 184, 101, 2, 139, 90, 166, 39, 122, 155, 30, 67, 4, 222, 190, 138, 223, 34, 102, 138, 220, 54, 85, 220, 73, 131, 140, 244 },
-                            Role = 0,
-                            Username = "lehoa@example.com"
-                        });
-                });
-
-            modelBuilder.Entity("FStore.Domain.Account.Address", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AddressLine")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(14)
-                        .HasColumnType("nvarchar(14)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.ToTable("Addresses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9c70bd9d-0564-4323-b336-68b7bd5bfd0f"),
-                            AccountId = new Guid("3aec8f0b-3a6a-4b5d-8a3a-348ae529001a"),
-                            AddressLine = "125 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5831),
-                            CreatedBy = "",
-                            Email = "johnadmin@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5831),
-                            ModifiedBy = "",
-                            Name = "John Admin",
-                            PhoneNumber = "1234567891"
-                        },
-                        new
-                        {
-                            Id = new Guid("7488359f-9cdd-4001-b99b-27a0da9db8f0"),
-                            AccountId = new Guid("2b25a754-a50e-4468-942c-d65c0bc2c86f"),
-                            AddressLine = "25 Phình Hồ, Văn Chấn, Yên Bái",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5866),
-                            CreatedBy = "",
-                            Email = "dangnhung72@gmail.com",
-                            IsMain = false,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5866),
-                            ModifiedBy = "",
-                            Name = "Đăng Thị Hồng Nhung",
-                            PhoneNumber = "0366702305"
-                        },
-                        new
-                        {
-                            Id = new Guid("2d91d265-7df7-4a0b-96ac-fbd4ada4b37d"),
-                            AccountId = new Guid("2b25a754-a50e-4468-942c-d65c0bc2c86f"),
-                            AddressLine = "22 Ngã Ba Kim, Mù Cang Chải, Yên Bái",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5869),
-                            CreatedBy = "",
-                            Email = "q170302@email.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5870),
-                            ModifiedBy = "",
-                            Name = "Nguyễn Quang Hưng",
-                            PhoneNumber = "0344917302"
-                        },
-                        new
-                        {
-                            Id = new Guid("0dd83a77-c52a-4b97-85bb-0b63245568c4"),
-                            AccountId = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
-                            AddressLine = "15 Lê Văn Lương, Thanh Xuân, Hà Nội",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5872),
-                            CreatedBy = "",
-                            Email = "nguyenvana@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5873),
-                            ModifiedBy = "",
-                            Name = "Nguyễn Văn An",
-                            PhoneNumber = "0912345678"
-                        },
-                        new
-                        {
-                            Id = new Guid("89c60716-ff2c-48df-beed-5b5656365415"),
-                            AccountId = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
-                            AddressLine = "20 Nguyễn Trãi, Thanh Xuân, Hà Nội",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5875),
-                            CreatedBy = "",
-                            Email = "lethib@example.com",
-                            IsMain = false,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5876),
-                            ModifiedBy = "",
-                            Name = "Lê Thị Bích",
-                            PhoneNumber = "0923456789"
-                        },
-                        new
-                        {
-                            Id = new Guid("d398f085-f4ce-40ea-921f-ba00b949925f"),
-                            AccountId = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
-                            AddressLine = "88 Đường Giải Phóng, Hoàng Mai, Hà Nội",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5879),
-                            CreatedBy = "",
-                            Email = "phamvanc@example.com",
-                            IsMain = false,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5879),
-                            ModifiedBy = "",
-                            Name = "Phạm Văn Công",
-                            PhoneNumber = "0934567890"
-                        },
-                        new
-                        {
-                            Id = new Guid("281341ac-6bb4-4da7-8485-d8fa38b61e81"),
-                            AccountId = new Guid("3141069d-f4f3-475c-8efc-99e1b4c3e627"),
-                            AddressLine = "121 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5887),
-                            CreatedBy = "",
-                            Email = "johnemployee@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5888),
-                            ModifiedBy = "",
-                            Name = "John Employee",
-                            PhoneNumber = "1234567892"
-                        },
-                        new
-                        {
-                            Id = new Guid("7b72967b-83b7-42ba-acc2-67662b5f89d1"),
-                            AccountId = new Guid("a3339dd7-94b9-4f12-9d18-2ee341b4f35c"),
-                            AddressLine = "456 Đường Nguyễn Trãi, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5890),
-                            CreatedBy = "",
-                            Email = "minhnguyen@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5891),
-                            ModifiedBy = "",
-                            Name = "Nguyễn Văn Minh",
-                            PhoneNumber = "0987654321"
-                        },
-                        new
-                        {
-                            Id = new Guid("e4f864f5-585f-4a71-bdec-6158493b99ad"),
-                            AccountId = new Guid("6060ab5a-ca8b-409c-87b2-363a69f06e66"),
-                            AddressLine = "789 Đường Lê Văn Sỹ, Phường 13, Quận 3, TP. Hồ Chí Minh",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5894),
-                            CreatedBy = "",
-                            Email = "lethimai@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5894),
-                            ModifiedBy = "",
-                            Name = "Lê Thị Mai",
-                            PhoneNumber = "0912345679"
-                        },
-                        new
-                        {
-                            Id = new Guid("2bf0b4ed-2d09-4247-a860-893013f3cd0f"),
-                            AccountId = new Guid("0e5c838e-f387-4183-a1c1-4c1e802ab180"),
-                            AddressLine = "123 Đường Lê Lai, Phường Phú Hòa, TP. Thủ Dầu Một, Bình Dương",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5897),
-                            CreatedBy = "",
-                            Email = "tranlan@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5897),
-                            ModifiedBy = "",
-                            Name = "Trần Thị Lan",
-                            PhoneNumber = "0908765432"
-                        },
-                        new
-                        {
-                            Id = new Guid("1d6f813b-7391-4e0f-9151-96acefe21565"),
-                            AccountId = new Guid("ae4c4f03-aa8a-4f37-a7cb-c5bc06e08d74"),
-                            AddressLine = "456 Đường Nguyễn Thái Học, Phường 10, TP. Cần Thơ",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5900),
-                            CreatedBy = "",
-                            Email = "nguyenan@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5900),
-                            ModifiedBy = "",
-                            Name = "Nguyễn Thị An",
-                            PhoneNumber = "0976543210"
-                        },
-                        new
-                        {
-                            Id = new Guid("943fd193-1a08-4e48-b368-b1db98c1cbea"),
-                            AccountId = new Guid("463d52ee-4c4e-40b0-a8f3-e59086878964"),
-                            AddressLine = "789 Đường Võ Văn Tần, Phường 5, Quận 3, TP. Hồ Chí Minh",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5903),
-                            CreatedBy = "",
-                            Email = "phantuyet@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5903),
-                            ModifiedBy = "",
-                            Name = "Phan Thị Tuyết",
-                            PhoneNumber = "0901234567"
-                        },
-                        new
-                        {
-                            Id = new Guid("0fb60446-3a1b-4cb4-be8f-1dfc1d8b8630"),
-                            AccountId = new Guid("80cd99a5-f3e4-43f6-a725-f4e07fa7cd7d"),
-                            AddressLine = "123 Đường Trường Chinh, Phường 14, Quận Tân Bình, TP. Hồ Chí Minh",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5906),
-                            CreatedBy = "",
-                            Email = "vuvankhai@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5906),
-                            ModifiedBy = "",
-                            Name = "Vũ Văn Khải",
-                            PhoneNumber = "0912345678"
-                        },
-                        new
-                        {
-                            Id = new Guid("22c4dd74-b8d4-4094-854b-7d3eaa95ec3c"),
-                            AccountId = new Guid("c36aab76-f6cc-46f6-a6c3-730d54b61a48"),
-                            AddressLine = "234 Đường Hà Huy Tập, Phường Đông Vệ, TP. Thanh Hóa",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5909),
-                            CreatedBy = "",
-                            Email = "lehoanganh@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5910),
-                            ModifiedBy = "",
-                            Name = "Lê Hoàng Anh",
-                            PhoneNumber = "0923456789"
-                        },
-                        new
-                        {
-                            Id = new Guid("90b6c10c-f9ea-4afb-81dc-d3b4c997a318"),
-                            AccountId = new Guid("4b45812f-2f47-41b9-b913-39bed1b02c1d"),
-                            AddressLine = "123 Đường Nguyễn Văn Linh, Phường Tân Hưng, Quận 7, TP. Hồ Chí Minh",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5914),
-                            CreatedBy = "",
-                            Email = "tranle@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5915),
-                            ModifiedBy = "",
-                            Name = "Trần Thị Lệ",
-                            PhoneNumber = "0987654321"
-                        },
-                        new
-                        {
-                            Id = new Guid("a2e7de3a-dc26-4b95-9580-64bd91fdc229"),
-                            AccountId = new Guid("3a9477da-b75c-4ef6-9bf6-a93aa5ffaf6f"),
-                            AddressLine = "456 Đường Phan Chu Trinh, Phường 5, TP. Đà Nẵng",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5917),
-                            CreatedBy = "",
-                            Email = "hoangmai@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(5918),
-                            ModifiedBy = "",
-                            Name = "Hoàng Thị Mai",
-                            PhoneNumber = "0976543210"
-                        },
-                        new
-                        {
-                            Id = new Guid("efe03ef7-15a4-4198-9ca9-1df5671eeeb9"),
-                            AccountId = new Guid("d15fcb08-fcb1-4a55-b012-b2be211ed2c1"),
-                            AddressLine = "789 Đường Lý Thường Kiệt, Phường Bắc Lý, TP. Quảng Bình",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6000),
-                            CreatedBy = "",
-                            Email = "lehoa@example.com",
-                            IsMain = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6000),
-                            ModifiedBy = "",
-                            Name = "Lê Thị Hòa",
-                            PhoneNumber = "0934567890"
-                        });
-                });
 
             modelBuilder.Entity("FStore.Domain.Basket.Cart", b =>
                 {
@@ -657,11 +120,11 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         new
                         {
                             Id = new Guid("a186203e-0d11-4c22-a45e-58ecfeed368f"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6168),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8901),
                             CreatedBy = "",
                             Deleted = false,
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6169),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8902),
                             ModifiedBy = "",
                             Slug = "books",
                             Title = "Books"
@@ -669,11 +132,11 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         new
                         {
                             Id = new Guid("2c8eb836-090b-4a18-a869-620d7f527180"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6171),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8906),
                             CreatedBy = "",
                             Deleted = false,
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6171),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8907),
                             ModifiedBy = "",
                             Slug = "movies",
                             Title = "Movies"
@@ -681,11 +144,11 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         new
                         {
                             Id = new Guid("c236f9f6-2c4c-4ba3-99ed-9cf81ee9bf46"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6173),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8911),
                             CreatedBy = "",
                             Deleted = false,
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6173),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8912),
                             ModifiedBy = "",
                             Slug = "video-games",
                             Title = "Video Games"
@@ -749,13 +212,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("318f6a20-3c0b-40ca-9cf0-9533e83d3734"),
                             CategoryId = new Guid("a186203e-0d11-4c22-a45e-58ecfeed368f"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6197),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8966),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "The Hitchhiker's Guide to the Galaxy is a comedy science fiction franchise created by Douglas Adams. Originally a 1978 radio comedy broadcast on BBC Radio 4, it was later adapted to other formats, including novels, stage shows, comic books, a 1981 TV series, a 1984 text adventure game, and 2005 feature film.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6198),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8967),
                             ModifiedBy = "",
                             Slug = "the-hitchhikers-guide-to-the-galaxy",
                             Title = "The Hitchhiker's Guide to the Galaxy"
@@ -764,13 +227,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("ce50c69d-5897-4e3d-8d2d-081114ed1fb0"),
                             CategoryId = new Guid("a186203e-0d11-4c22-a45e-58ecfeed368f"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6201),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8975),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune. Cline sold the rights to publish the novel in June 2010, in a bidding war to the Crown Publishing Group (a division of Random House). The book was published on August 16, 2011. An audiobook was released the same day; it was narrated by Wil Wheaton, who was mentioned briefly in one of the chapters. In 2012, the book received an Alex Award from the Young Adult Library Services Association division of the American Library Association and won the 2011 Prometheus Award. A film adaptation, screenwritten by Cline and Zak Penn and directed by Steven Spielberg, was released on March 29, 2018. A sequel novel, Ready Player Two, was released on November 24, 2020, to a widely negative critical reception.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/a/a4/Ready_Player_One_cover.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6201),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8976),
                             ModifiedBy = "",
                             Slug = "ready-player-one",
                             Title = "Ready Player One"
@@ -779,13 +242,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("c7537965-c2cb-4e77-bfc5-6c466c9a3bea"),
                             CategoryId = new Guid("a186203e-0d11-4c22-a45e-58ecfeed368f"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6205),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8984),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "Nineteen Eighty-Four (also published as 1984) is a dystopian novel and cautionary tale by English writer George Orwell. It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime. Thematically, it centres on the consequences of totalitarianism, mass surveillance and repressive regimentation of people and behaviours within society. Orwell, a democratic socialist, modelled the authoritarian state in the novel on the Soviet Union in the era of Stalinism, and Nazi Germany. More broadly, the novel examines the role of truth and facts within societies and the ways in which they can be manipulated.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/5/51/1984_first_edition_cover.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6205),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8985),
                             ModifiedBy = "",
                             Slug = "nineteen-eighty-four",
                             Title = "Nineteen Eighty-Four"
@@ -794,13 +257,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("4f5c260c-0870-4940-a394-b20c56b3fcca"),
                             CategoryId = new Guid("2c8eb836-090b-4a18-a869-620d7f527180"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6209),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8991),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "The Matrix is a 1999 science fiction action film written and directed by the Wachowskis, and produced by Joel Silver. Starring Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, and Joe Pantoliano, and as the first installment in the Matrix franchise, it depicts a dystopian future in which humanity is unknowingly trapped inside a simulated reality, the Matrix, which intelligent machines have created to distract humans while using their bodies as an energy source. When computer programmer Thomas Anderson, under the hacker alias \"Neo\", uncovers the truth, he \"is drawn into a rebellion against the machines\" along with other people who have been freed from the Matrix.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6210),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8992),
                             ModifiedBy = "",
                             Slug = "the-matrix",
                             Title = "The Matrix"
@@ -809,13 +272,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("f2b7ac53-e3e5-4f7c-8094-99530bbde9eb"),
                             CategoryId = new Guid("2c8eb836-090b-4a18-a869-620d7f527180"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6213),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8999),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "Back to the Future is a 1985 American science fiction film directed by Robert Zemeckis. Written by Zemeckis and Bob Gale, it stars Michael J. Fox, Christopher Lloyd, Lea Thompson, Crispin Glover, and Thomas F. Wilson. Set in 1985, the story follows Marty McFly (Fox), a teenager accidentally sent back to 1955 in a time-traveling DeLorean automobile built by his eccentric scientist friend Doctor Emmett \"Doc\" Brown (Lloyd). Trapped in the past, Marty inadvertently prevents his future parents' meeting—threatening his very existence—and is forced to reconcile the pair and somehow get back to the future.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/d/d2/Back_to_the_Future.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6214),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9000),
                             ModifiedBy = "",
                             Slug = "back-to-the-future",
                             Title = "Back to the Future"
@@ -824,13 +287,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("321ec52d-5fb6-4b1b-bb35-6f73cf92396d"),
                             CategoryId = new Guid("2c8eb836-090b-4a18-a869-620d7f527180"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6217),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9006),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "Toy Story is a 1995 American computer-animated comedy film produced by Pixar Animation Studios and released by Walt Disney Pictures. The first installment in the Toy Story franchise, it was the first entirely computer-animated feature film, as well as the first feature film from Pixar. The film was directed by John Lasseter (in his feature directorial debut), and written by Joss Whedon, Andrew Stanton, Joel Cohen, and Alec Sokolow from a story by Lasseter, Stanton, Pete Docter, and Joe Ranft. The film features music by Randy Newman, was produced by Bonnie Arnold and Ralph Guggenheim, and was executive-produced by Steve Jobs and Edwin Catmull. The film features the voices of Tom Hanks, Tim Allen, Don Rickles, Wallace Shawn, John Ratzenberger, Jim Varney, Annie Potts, R. Lee Ermey, John Morris, Laurie Metcalf, and Erik von Detten. Taking place in a world where anthropomorphic toys come to life when humans are not present, the plot focuses on the relationship between an old-fashioned pull-string cowboy doll named Woody and an astronaut action figure, Buzz Lightyear, as they evolve from rivals competing for the affections of their owner, Andy Davis, to friends who work together to be reunited with Andy after being separated from him.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6218),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9007),
                             ModifiedBy = "",
                             Slug = "toy-story",
                             Title = "Toy Story"
@@ -839,13 +302,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("106e97ab-bbce-44b8-95c4-a287752d8561"),
                             CategoryId = new Guid("c236f9f6-2c4c-4ba3-99ed-9cf81ee9bf46"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6221),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9014),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "Half-Life 2 is a 2004 first-person shooter game developed and published by Valve. Like the original Half-Life, it combines shooting, puzzles, and storytelling, and adds features such as vehicles and physics-based gameplay.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6221),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9015),
                             ModifiedBy = "",
                             Slug = "half-life-2",
                             Title = "Half-Life 2"
@@ -854,13 +317,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("07acf5bd-e13d-4667-ba8e-70be6785f655"),
                             CategoryId = new Guid("c236f9f6-2c4c-4ba3-99ed-9cf81ee9bf46"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6225),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9022),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "Diablo II is an action role-playing hack-and-slash computer video game developed by Blizzard North and published by Blizzard Entertainment in 2000 for Microsoft Windows, Classic Mac OS, and macOS.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/d/d5/Diablo_II_Coverart.png",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6225),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9023),
                             ModifiedBy = "",
                             Slug = "diablo-ii",
                             Title = "Diablo II"
@@ -869,13 +332,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("00cab8fd-ad0e-433b-8bb0-2c9596809b7b"),
                             CategoryId = new Guid("c236f9f6-2c4c-4ba3-99ed-9cf81ee9bf46"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6229),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9030),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "Day of the Tentacle, also known as Maniac Mansion II: Day of the Tentacle, is a 1993 graphic adventure game developed and published by LucasArts. It is the sequel to the 1987 game Maniac Mansion.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/en/7/79/Day_of_the_Tentacle_artwork.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6229),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9031),
                             ModifiedBy = "",
                             Slug = "day-of-the-tentacle",
                             Title = "Day of the Tentacle"
@@ -884,13 +347,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("fc67ff65-d124-4350-94fa-8dd1cc0559e1"),
                             CategoryId = new Guid("c236f9f6-2c4c-4ba3-99ed-9cf81ee9bf46"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6232),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9039),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "The Xbox is a home video game console and the first installment in the Xbox series of video game consoles manufactured by Microsoft.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox-console.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6233),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9040),
                             ModifiedBy = "",
                             Slug = "xbox",
                             Title = "Xbox"
@@ -899,13 +362,13 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         {
                             Id = new Guid("aed54a62-e6e7-4670-ab24-1c84b911deb0"),
                             CategoryId = new Guid("c236f9f6-2c4c-4ba3-99ed-9cf81ee9bf46"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6236),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9046),
                             CreatedBy = "",
                             Deleted = false,
                             Description = "The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea.",
                             ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg",
                             IsActive = true,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6237),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9047),
                             ModifiedBy = "",
                             Slug = "super-nintendo-entertainment-system",
                             Title = "Super Nintendo Entertainment System"
@@ -945,81 +408,81 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         new
                         {
                             Id = new Guid("bd2d16dc-10a9-40b1-b76a-e39f3c015086"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6115),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8790),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6116),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8791),
                             ModifiedBy = "",
                             Name = "Author"
                         },
                         new
                         {
                             Id = new Guid("09ec0726-d537-4c92-aaaf-760f19c6999f"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6117),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8795),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6118),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8796),
                             ModifiedBy = "",
                             Name = "Publisher"
                         },
                         new
                         {
                             Id = new Guid("d369dc76-92cf-417a-aea5-17616c87d4ce"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6119),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8799),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6120),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8800),
                             ModifiedBy = "",
                             Name = "ISBN"
                         },
                         new
                         {
                             Id = new Guid("50b7176f-4b13-484b-aec4-edf9383b9232"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6121),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8803),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6122),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8804),
                             ModifiedBy = "",
                             Name = "Pages"
                         },
                         new
                         {
                             Id = new Guid("b96ab5d0-3155-4688-8fb4-c6427e0661d5"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6123),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8808),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6124),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8809),
                             ModifiedBy = "",
                             Name = "Directors"
                         },
                         new
                         {
                             Id = new Guid("99bf3d94-a248-46f8-bbcb-0f9ae07ce1af"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6125),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8812),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6125),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8813),
                             ModifiedBy = "",
                             Name = "Writers"
                         },
                         new
                         {
                             Id = new Guid("a5913406-23e7-4451-a19c-242c974e312e"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6127),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8816),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6127),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8817),
                             ModifiedBy = "",
                             Name = "Stars"
                         },
                         new
                         {
                             Id = new Guid("c84ec2fc-651b-42e1-b073-022596ac90c0"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6129),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8820),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6129),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8821),
                             ModifiedBy = "",
                             Name = "Gerne"
                         },
                         new
                         {
                             Id = new Guid("4150124b-2a58-4d98-8abe-f380e99a6fa9"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6131),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8825),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6131),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8826),
                             ModifiedBy = "",
                             Name = "Developer"
                         });
@@ -1058,90 +521,90 @@ namespace FStore.Infrastructure.Persistence.Migrations
                         new
                         {
                             Id = new Guid("e21526c4-f78b-4eb5-8ae0-919633179582"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6055),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8671),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6055),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8672),
                             ModifiedBy = "",
                             Name = "Default"
                         },
                         new
                         {
                             Id = new Guid("ff58b31e-53d5-4216-84a4-0566cb2e9b52"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6057),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8678),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6058),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8679),
                             ModifiedBy = "",
                             Name = "Paperback"
                         },
                         new
                         {
                             Id = new Guid("b28481c3-51fb-4a94-8558-0ac0ebfb1607"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6059),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8683),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6060),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8684),
                             ModifiedBy = "",
                             Name = "E-Book"
                         },
                         new
                         {
                             Id = new Guid("43a56b31-2f02-4e9d-88b0-2b3ced2276ba"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6061),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8687),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6062),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8688),
                             ModifiedBy = "",
                             Name = "Audiobook"
                         },
                         new
                         {
                             Id = new Guid("dfd52a60-8ccf-4ac2-980c-14ddf41e9a18"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6063),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8691),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6063),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8693),
                             ModifiedBy = "",
                             Name = "Stream"
                         },
                         new
                         {
                             Id = new Guid("fbaeaba4-a5bc-487e-b0e5-0967ff543d5d"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6065),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8696),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6065),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8697),
                             ModifiedBy = "",
                             Name = "Blu-ray"
                         },
                         new
                         {
                             Id = new Guid("7c604dd7-d603-4f6a-b5bf-f254bd812787"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6066),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8700),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6067),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8701),
                             ModifiedBy = "",
                             Name = "VHS"
                         },
                         new
                         {
                             Id = new Guid("e2d9219f-c57b-4c59-bea0-6a3af2e655a5"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6068),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8705),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6069),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8706),
                             ModifiedBy = "",
                             Name = "PC"
                         },
                         new
                         {
                             Id = new Guid("f728c3bf-b4d8-41f6-93ab-7a91cba390be"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6070),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8709),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6071),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8710),
                             ModifiedBy = "",
                             Name = "PlayStation"
                         },
                         new
                         {
                             Id = new Guid("934902b5-c2a2-4fbc-97c2-8887ed45d08e"),
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6072),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8713),
                             CreatedBy = "",
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6072),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8714),
                             ModifiedBy = "",
                             Name = "Xbox"
                         });
@@ -1572,38 +1035,38 @@ namespace FStore.Infrastructure.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ac58c811-e81b-4793-9f76-92dbf70ff6b7"),
+                            Id = new Guid("6a91dc42-595c-4218-8443-6385c65fa6da"),
                             Code = "SUMMER24",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6483),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9615),
                             CreatedBy = "",
                             DiscountValue = 24.00m,
-                            EndDate = new DateTime(2025, 4, 11, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6490),
+                            EndDate = new DateTime(2025, 4, 12, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9628),
                             IsActive = true,
                             IsDiscountPercent = true,
                             MaxDiscountValue = 80000m,
                             MinOrderCondition = 200000m,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6484),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9616),
                             ModifiedBy = "",
                             Quantity = 1000,
-                            StartDate = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6489),
+                            StartDate = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9627),
                             VoucherName = "Summer 24% Discount"
                         },
                         new
                         {
-                            Id = new Guid("e1b08b48-8e6c-404e-8ceb-8f0909c7a231"),
+                            Id = new Guid("75a63322-f944-4c71-82d9-92c0a09a3825"),
                             Code = "SUMMER20000",
-                            CreatedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6492),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9633),
                             CreatedBy = "",
                             DiscountValue = 19.00m,
-                            EndDate = new DateTime(2025, 4, 11, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6496),
+                            EndDate = new DateTime(2025, 4, 12, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9642),
                             IsActive = true,
                             IsDiscountPercent = false,
                             MaxDiscountValue = 0m,
                             MinOrderCondition = 199m,
-                            ModifiedAt = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6492),
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9634),
                             ModifiedBy = "",
                             Quantity = 1000,
-                            StartDate = new DateTime(2025, 3, 12, 21, 52, 51, 21, DateTimeKind.Local).AddTicks(6496),
+                            StartDate = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(9641),
                             VoucherName = "Summer 20000VND Discount"
                         });
                 });
@@ -1720,15 +1183,541 @@ namespace FStore.Infrastructure.Persistence.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("FStore.Domain.Account.Address", b =>
+            modelBuilder.Entity("FStore.Domain.UserIdentity.Account", b =>
                 {
-                    b.HasOne("FStore.Domain.Account.Account", "Account")
-                        .WithMany("Addresses")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Navigation("Account");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Accounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3aec8f0b-3a6a-4b5d-8a3a-348ae529001a"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7300),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7325),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 1,
+                            Username = "admin@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("2b25a754-a50e-4468-942c-d65c0bc2c86f"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7345),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7346),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "customer@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7350),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7351),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "customer2@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("3141069d-f4f3-475c-8efc-99e1b4c3e627"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7355),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7356),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 2,
+                            Username = "employee@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("a3339dd7-94b9-4f12-9d18-2ee341b4f35c"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7360),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7361),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "nguyenvanminh@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("6060ab5a-ca8b-409c-87b2-363a69f06e66"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7365),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7366),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "lethimai@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("0e5c838e-f387-4183-a1c1-4c1e802ab180"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7370),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7371),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "tranlan@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("ae4c4f03-aa8a-4f37-a7cb-c5bc06e08d74"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7375),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7376),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "nguyenan@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("463d52ee-4c4e-40b0-a8f3-e59086878964"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7380),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7381),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "phantuyet@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("80cd99a5-f3e4-43f6-a725-f4e07fa7cd7d"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7385),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7386),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "vuvankhai@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("c36aab76-f6cc-46f6-a6c3-730d54b61a48"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7390),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7391),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "lehoanganh@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("4b45812f-2f47-41b9-b913-39bed1b02c1d"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7395),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7396),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "tranle@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("3a9477da-b75c-4ef6-9bf6-a93aa5ffaf6f"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7400),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7401),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "hoangmai@example.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("d15fcb08-fcb1-4a55-b012-b2be211ed2c1"),
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7405),
+                            CreatedBy = "",
+                            Deleted = false,
+                            IsActive = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(7406),
+                            ModifiedBy = "",
+                            PasswordHash = new byte[] { 118, 242, 252, 77, 62, 75, 41, 107, 109, 219, 79, 42, 210, 211, 127, 95, 15, 207, 89, 158, 17, 98, 9, 221, 176, 89, 90, 218, 17, 183, 187, 133, 50, 166, 71, 1, 187, 58, 136, 243, 196, 140, 136, 112, 48, 11, 14, 134, 198, 21, 48, 178, 123, 186, 34, 34, 38, 249, 193, 251, 0, 43, 120, 145 },
+                            PasswordSalt = new byte[] { 66, 80, 29, 204, 84, 145, 19, 25, 66, 12, 63, 34, 159, 128, 27, 209, 229, 121, 210, 95, 9, 133, 209, 79, 250, 183, 49, 177, 56, 214, 233, 31, 126, 74, 69, 225, 254, 208, 186, 72, 245, 211, 59, 56, 88, 125, 5, 140, 119, 90, 243, 228, 221, 57, 101, 165, 202, 62, 57, 203, 226, 83, 181, 101, 175, 94, 42, 101, 10, 48, 11, 196, 20, 27, 15, 14, 53, 187, 29, 8, 42, 54, 97, 65, 133, 110, 160, 179, 203, 135, 163, 132, 63, 251, 117, 117, 131, 199, 178, 129, 62, 57, 253, 159, 194, 131, 20, 184, 228, 8, 154, 26, 112, 156, 137, 166, 199, 189, 31, 230, 219, 13, 97, 63, 9, 155, 151, 138 },
+                            Role = 0,
+                            Username = "lehoa@example.com"
+                        });
+                });
+
+            modelBuilder.Entity("FStore.Domain.UserIdentity.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AddressLine")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("452ff46d-70b4-4959-85b9-d8d125e9ad34"),
+                            AccountId = new Guid("3aec8f0b-3a6a-4b5d-8a3a-348ae529001a"),
+                            AddressLine = "125 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8365),
+                            CreatedBy = "",
+                            Email = "johnadmin@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8366),
+                            ModifiedBy = "",
+                            Name = "John Admin",
+                            PhoneNumber = "1234567891"
+                        },
+                        new
+                        {
+                            Id = new Guid("09381602-b331-4f2a-8c01-19e7152f8797"),
+                            AccountId = new Guid("2b25a754-a50e-4468-942c-d65c0bc2c86f"),
+                            AddressLine = "25 Phình Hồ, Văn Chấn, Yên Bái",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8453),
+                            CreatedBy = "",
+                            Email = "dangnhung72@gmail.com",
+                            IsMain = false,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8454),
+                            ModifiedBy = "",
+                            Name = "Đăng Thị Hồng Nhung",
+                            PhoneNumber = "0366702305"
+                        },
+                        new
+                        {
+                            Id = new Guid("e5263ffd-0713-4353-af4a-431ffcba27df"),
+                            AccountId = new Guid("2b25a754-a50e-4468-942c-d65c0bc2c86f"),
+                            AddressLine = "22 Ngã Ba Kim, Mù Cang Chải, Yên Bái",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8460),
+                            CreatedBy = "",
+                            Email = "q170302@email.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8462),
+                            ModifiedBy = "",
+                            Name = "Nguyễn Quang Hưng",
+                            PhoneNumber = "0344917302"
+                        },
+                        new
+                        {
+                            Id = new Guid("55ec2c59-2320-47cf-b86f-3315cb51fba8"),
+                            AccountId = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
+                            AddressLine = "15 Lê Văn Lương, Thanh Xuân, Hà Nội",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8467),
+                            CreatedBy = "",
+                            Email = "nguyenvana@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8468),
+                            ModifiedBy = "",
+                            Name = "Nguyễn Văn An",
+                            PhoneNumber = "0912345678"
+                        },
+                        new
+                        {
+                            Id = new Guid("e6d8b1db-2965-4af5-b9a6-092f28467e7d"),
+                            AccountId = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
+                            AddressLine = "20 Nguyễn Trãi, Thanh Xuân, Hà Nội",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8474),
+                            CreatedBy = "",
+                            Email = "lethib@example.com",
+                            IsMain = false,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8475),
+                            ModifiedBy = "",
+                            Name = "Lê Thị Bích",
+                            PhoneNumber = "0923456789"
+                        },
+                        new
+                        {
+                            Id = new Guid("dbf6e35a-b3d2-4f71-9658-c4f5e06915a4"),
+                            AccountId = new Guid("db757696-89d6-4f61-84bb-61bc9b87ea05"),
+                            AddressLine = "88 Đường Giải Phóng, Hoàng Mai, Hà Nội",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8481),
+                            CreatedBy = "",
+                            Email = "phamvanc@example.com",
+                            IsMain = false,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8482),
+                            ModifiedBy = "",
+                            Name = "Phạm Văn Công",
+                            PhoneNumber = "0934567890"
+                        },
+                        new
+                        {
+                            Id = new Guid("41baab94-4d2f-442e-8ef0-77864461a876"),
+                            AccountId = new Guid("3141069d-f4f3-475c-8efc-99e1b4c3e627"),
+                            AddressLine = "121 Đường Cầu Giấy ,Cầu Giấy, Hà Nội",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8488),
+                            CreatedBy = "",
+                            Email = "johnemployee@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8489),
+                            ModifiedBy = "",
+                            Name = "John Employee",
+                            PhoneNumber = "1234567892"
+                        },
+                        new
+                        {
+                            Id = new Guid("9cd32456-1791-4322-ba3a-ebc0631a6492"),
+                            AccountId = new Guid("a3339dd7-94b9-4f12-9d18-2ee341b4f35c"),
+                            AddressLine = "456 Đường Nguyễn Trãi, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8495),
+                            CreatedBy = "",
+                            Email = "minhnguyen@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8496),
+                            ModifiedBy = "",
+                            Name = "Nguyễn Văn Minh",
+                            PhoneNumber = "0987654321"
+                        },
+                        new
+                        {
+                            Id = new Guid("c60ecad0-37f2-40e1-a036-3b527fa2fef4"),
+                            AccountId = new Guid("6060ab5a-ca8b-409c-87b2-363a69f06e66"),
+                            AddressLine = "789 Đường Lê Văn Sỹ, Phường 13, Quận 3, TP. Hồ Chí Minh",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8501),
+                            CreatedBy = "",
+                            Email = "lethimai@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8502),
+                            ModifiedBy = "",
+                            Name = "Lê Thị Mai",
+                            PhoneNumber = "0912345679"
+                        },
+                        new
+                        {
+                            Id = new Guid("2f05f903-5c22-4f25-a827-e02c4b54f3a7"),
+                            AccountId = new Guid("0e5c838e-f387-4183-a1c1-4c1e802ab180"),
+                            AddressLine = "123 Đường Lê Lai, Phường Phú Hòa, TP. Thủ Dầu Một, Bình Dương",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8514),
+                            CreatedBy = "",
+                            Email = "tranlan@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8515),
+                            ModifiedBy = "",
+                            Name = "Trần Thị Lan",
+                            PhoneNumber = "0908765432"
+                        },
+                        new
+                        {
+                            Id = new Guid("3c418f5f-373f-4f0f-90f4-0a8834b8738b"),
+                            AccountId = new Guid("ae4c4f03-aa8a-4f37-a7cb-c5bc06e08d74"),
+                            AddressLine = "456 Đường Nguyễn Thái Học, Phường 10, TP. Cần Thơ",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8522),
+                            CreatedBy = "",
+                            Email = "nguyenan@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8523),
+                            ModifiedBy = "",
+                            Name = "Nguyễn Thị An",
+                            PhoneNumber = "0976543210"
+                        },
+                        new
+                        {
+                            Id = new Guid("5ee2b37c-1050-4cc7-8f0d-a1552d641a71"),
+                            AccountId = new Guid("463d52ee-4c4e-40b0-a8f3-e59086878964"),
+                            AddressLine = "789 Đường Võ Văn Tần, Phường 5, Quận 3, TP. Hồ Chí Minh",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8528),
+                            CreatedBy = "",
+                            Email = "phantuyet@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8529),
+                            ModifiedBy = "",
+                            Name = "Phan Thị Tuyết",
+                            PhoneNumber = "0901234567"
+                        },
+                        new
+                        {
+                            Id = new Guid("88bb29e1-14d9-4971-8a96-112c3a648d69"),
+                            AccountId = new Guid("80cd99a5-f3e4-43f6-a725-f4e07fa7cd7d"),
+                            AddressLine = "123 Đường Trường Chinh, Phường 14, Quận Tân Bình, TP. Hồ Chí Minh",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8535),
+                            CreatedBy = "",
+                            Email = "vuvankhai@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8536),
+                            ModifiedBy = "",
+                            Name = "Vũ Văn Khải",
+                            PhoneNumber = "0912345678"
+                        },
+                        new
+                        {
+                            Id = new Guid("fe7dc2fd-206b-48e8-b62d-6386884a6519"),
+                            AccountId = new Guid("c36aab76-f6cc-46f6-a6c3-730d54b61a48"),
+                            AddressLine = "234 Đường Hà Huy Tập, Phường Đông Vệ, TP. Thanh Hóa",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8542),
+                            CreatedBy = "",
+                            Email = "lehoanganh@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8543),
+                            ModifiedBy = "",
+                            Name = "Lê Hoàng Anh",
+                            PhoneNumber = "0923456789"
+                        },
+                        new
+                        {
+                            Id = new Guid("6a37ceff-2311-48d6-93eb-38d88ca91ebf"),
+                            AccountId = new Guid("4b45812f-2f47-41b9-b913-39bed1b02c1d"),
+                            AddressLine = "123 Đường Nguyễn Văn Linh, Phường Tân Hưng, Quận 7, TP. Hồ Chí Minh",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8549),
+                            CreatedBy = "",
+                            Email = "tranle@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8550),
+                            ModifiedBy = "",
+                            Name = "Trần Thị Lệ",
+                            PhoneNumber = "0987654321"
+                        },
+                        new
+                        {
+                            Id = new Guid("cfe8956a-4f72-45df-adba-bb90670f7c15"),
+                            AccountId = new Guid("3a9477da-b75c-4ef6-9bf6-a93aa5ffaf6f"),
+                            AddressLine = "456 Đường Phan Chu Trinh, Phường 5, TP. Đà Nẵng",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8556),
+                            CreatedBy = "",
+                            Email = "hoangmai@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8557),
+                            ModifiedBy = "",
+                            Name = "Hoàng Thị Mai",
+                            PhoneNumber = "0976543210"
+                        },
+                        new
+                        {
+                            Id = new Guid("05bd0c76-e1b8-4085-90f8-066ee8667b19"),
+                            AccountId = new Guid("d15fcb08-fcb1-4a55-b012-b2be211ed2c1"),
+                            AddressLine = "789 Đường Lý Thường Kiệt, Phường Bắc Lý, TP. Quảng Bình",
+                            CreatedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8563),
+                            CreatedBy = "",
+                            Email = "lehoa@example.com",
+                            IsMain = true,
+                            ModifiedAt = new DateTime(2025, 3, 13, 15, 43, 0, 862, DateTimeKind.Local).AddTicks(8564),
+                            ModifiedBy = "",
+                            Name = "Lê Thị Hòa",
+                            PhoneNumber = "0934567890"
+                        });
                 });
 
             modelBuilder.Entity("FStore.Domain.Basket.CartItem", b =>
@@ -1828,9 +1817,15 @@ namespace FStore.Infrastructure.Persistence.Migrations
                     b.Navigation("ProductType");
                 });
 
-            modelBuilder.Entity("FStore.Domain.Account.Account", b =>
+            modelBuilder.Entity("FStore.Domain.UserIdentity.Address", b =>
                 {
-                    b.Navigation("Addresses");
+                    b.HasOne("FStore.Domain.UserIdentity.Account", "Account")
+                        .WithMany("Addresses")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("FStore.Domain.Basket.Cart", b =>
@@ -1868,6 +1863,11 @@ namespace FStore.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("FStore.Domain.Ordering.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("FStore.Domain.UserIdentity.Account", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 #pragma warning restore 612, 618
         }

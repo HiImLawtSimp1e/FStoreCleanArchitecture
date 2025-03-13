@@ -1,6 +1,6 @@
-﻿namespace FStore.Application.Account.DTOs.AddressDTOs
+﻿namespace FStore.Application.UserIdentity.DTOs.AddressDTOs
 {
-    public class UpdateAddressDto
+    public class CreateAddressDto
     {
         [Required(ErrorMessage = "Full name is required"), MinLength(6, ErrorMessage = "Full name must be at least 6 characters long"), StringLength(50, ErrorMessage = "Full name must not exceed 50 characters")]
         public string Name { get; set; } = string.Empty;

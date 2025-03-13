@@ -7,7 +7,7 @@ namespace FStore.Infrastructure.Persistence
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-        // Account context
+        // UserIdentity context
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Address> Addresses { get; set; }
 
@@ -32,7 +32,7 @@ namespace FStore.Infrastructure.Persistence
         {
             base.OnModelCreating(builder);
 
-            DatabaseSeeder.SeedingAccount(builder);
+            DatabaseSeeder.SeedingUserIdentity(builder);
             DatabaseSeeder.SeedingCatalog(builder);
             DatabaseSeeder.SeedingCoupon(builder);
 

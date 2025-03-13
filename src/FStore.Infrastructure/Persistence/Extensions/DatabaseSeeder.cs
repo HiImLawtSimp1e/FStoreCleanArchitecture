@@ -4,8 +4,8 @@ namespace FStore.Infrastructure.Persistence.Extensions
 {
     public static class DatabaseSeeder
     {
-        // Seeding Account
-        public static void SeedingAccount(ModelBuilder modelBuilder)
+        // Seeding UserIdentity
+        public static void SeedingUserIdentity(ModelBuilder modelBuilder)
         {
             const string defaultPassword = "123456";
 
