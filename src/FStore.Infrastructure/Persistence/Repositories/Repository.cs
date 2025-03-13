@@ -22,36 +22,7 @@ namespace FStore.Infrastructure.Persistence.Repositories
             return dbSet.Any(filter);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
-        {
-            IQueryable<T> query;
-            if (tracked)
-            {
-                query = dbSet; // Thực thể được theo dõi
-            }
-            else
-            {
-                query = dbSet.AsNoTracking(); // Thực thể không được theo dõi (AsNoTracking trong EF Core được sử dụng để chỉ định rằng các thực thể trả về từ truy vấn sẽ không được theo dõi bởi DbContext)
-            }
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            if (!string.IsNullOrEmpty(includeProperties))
-            {
-                foreach (var includeProp in includeProperties
-                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProp);
-                }
-            }
-
-            return query.FirstOrDefault();
-        }
-
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false, Expression<Func<T, object>>? filterInclude = null)
         {
             IQueryable<T> query;
             if (tracked)
@@ -70,10 +41,50 @@ namespace FStore.Infrastructure.Persistence.Repositories
 
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                var includeProps = includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var includeProp in includeProps)
                 {
                     query = query.Include(includeProp);
                 }
+            }
+
+            if (filterInclude != null)
+            {
+                query = query.Include(filterInclude);
+            }
+
+            return query.FirstOrDefault();
+        }
+
+        public async Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false, Expression<Func<T, object>>? filterInclude = null)
+        {
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                var includeProps = includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var includeProp in includeProps)
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+
+            if (filterInclude != null)
+            {
+                query = query.Include(filterInclude);
             }
 
             return await query.FirstOrDefaultAsync();
