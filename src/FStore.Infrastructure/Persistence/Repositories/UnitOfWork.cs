@@ -5,12 +5,14 @@
         private readonly ApplicationDbContext _context;
 
         public ICategoryRepository Category { get; private set; }
+        public IAccountRepository Account { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
 
             Category = new CategoryRepository(_context);
+            Account = new AccountRepository(_context);
         }
         public void Save()
         {

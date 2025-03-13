@@ -1,6 +1,5 @@
 ﻿using FStore.Application.Catalog.DTOs.CategoryDTOs;
 using FStore.Application.Catalog.Services.Interfaces;
-using Mapster;
 
 namespace FStore.Application.Catalog.Services.Implementations
 {
